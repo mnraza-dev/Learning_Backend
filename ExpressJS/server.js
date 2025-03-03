@@ -1,14 +1,27 @@
-import express from 'express';
-
-
+import express from "express";
 const app = express();
-const hostname = '127.0.0.1';
+const hostname = "127.0.0.1";
 const PORT = 3000;
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-    res.send('Hello World');
+let teaData = {};
+let nextId = 1;
+
+app.post("/tea", (req, res) => {
+  const { name, price } = req.body;
+
+  const newTea = {
+    id: nextId++,
+    name,
+    price,
+  };
+
+  teaData.push(newTea);
+  res.status(200).send(newTea);
 });
-app.listen(PORT,hostname, () => {
+
+app.listen(PORT, hostname, () => {
   console.log(`Server is running on  http://${hostname}:${PORT}`);
 });
