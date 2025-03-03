@@ -1,16 +1,12 @@
 node_modules/
-
+# Ignore environment files
 .env
 .env.local
 .env.development
-.env.test
 .env.production
-.env.staging
-.env.*.local
-.env.*.development
-.env.*.test
-.env.*.production
-.env.*.staging
-.env.sample
-.env.example
-.env*
+.env.test
+
+# Ignore backup and temporary env files
+.env.*
+!.env.example
+!.env.sample
