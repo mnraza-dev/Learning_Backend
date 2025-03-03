@@ -24,6 +24,17 @@ app.post("/tea", (req, res) => {
 app.get("/tea", (req, res) => {
     res.status(200).send(teaData);
 });
+
+app.get("/tea/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const tea = teaData.find((t) => t.id === id);
+    if (!tea) {
+      res.status(404).send("Tea not found");
+    } else {
+      res.status(200).send(tea);
+    }
+  });
+
 app.listen(PORT, hostname, () => {
   console.log(`Server is running on  http://${hostname}:${PORT}`);
 });
