@@ -116,6 +116,19 @@ app.get("/users/:id", (req, res) => {
     statusCode: 200,
   });
 });
+
+app.get("/search", (req, res) => {
+  const { name, age } = req.query;
+  console.log(name, age);
+  res.status(200).json({
+    status: "ok",
+    data: users.filter((u) => u.name.toLowerCase().includes(name.toLowerCase())),
+    error: null,
+    success: true,
+    statusCode: 200,
+  })
+  
+})
 app.get("/about", (req, res) => {
   res.status(200).json({
     status: "ok",
