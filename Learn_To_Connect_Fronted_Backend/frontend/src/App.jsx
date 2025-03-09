@@ -1,20 +1,42 @@
-import React, {  useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const App = () => {
+  
+  const [username, setUsername] = useState("");
+  const [age, setAge] = useState(0);
+  const [city, setCity] = useState("");
 
-  const handleRequestAPI = async () => {
-    const response = await fetch("http://localhost:3000/");
-    const data = await response.json();
-    console.log(data);
-  };
-  useEffect(() => {
-    handleRequestAPI();
-  }, []);
-
+  async function getRes() {
+    axios.post("http://localhost:3000/tea", { username, age, city });
+  }
 
   return (
-    <div>
-      <button onClick={handleRequestAPI}>Send Request</button>
+    <div className="App">
+      <form onSubmit={getRes}>
+        <input
+        placeholder="username"
+          type="text"
+          name="username"
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <br />
+        <input
+        placeholder="Age"
+          type="number"
+          name="age"
+          onChange={(e) => setAge(e.target.value)}
+        />
+        <br />
+        <input
+        placeholder="City"
+          type="text"
+          name="city"
+          onChange={(e) => setCity(e.target.value)}
+        />
+        <br />
+        <button type="submit">Send Request</button>
+      </form>
     </div>
   );
 };
