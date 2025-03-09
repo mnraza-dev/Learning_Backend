@@ -14,6 +14,8 @@ app.use(
   })
 );
 
+// app.use(cors());
+
 app.get("/", (req, res) => {
   res.status(200).json({
     name: "MN Raza",
@@ -22,9 +24,9 @@ app.get("/", (req, res) => {
 });
 app.post("/", (req, res) => {
   console.log(req.body);
-
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
+    data: req.body,
   });
 });
 
