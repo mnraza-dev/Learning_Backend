@@ -10,7 +10,9 @@ const PORT = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 connectDB();
+
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Server is running" });
 });
@@ -18,11 +20,18 @@ app.get("/", (req, res) => {
 app.post("/create", (req, res) => {
   try {
     const { name, email, userName } = req.body;
+
+    if (!name || !email || !userName)
+      return res.status(400).json({ message: "All fields are required" });
     const user = new User({ name, email, userName });
+
+    if (!user) return res.status(400).json({ message: "User not created" });
     user.save();
-    res.status(200).json({ message: "User created successfully" });
+    res.status(201).json({ message: "User created successfully" });
   } catch (error) {
-    res.status(500).json({ message: "Error creating user" });
+    res
+      .status(500)
+      .json({ message: "Error creating user", error: error.message });
     console.log(error);
   }
 });
