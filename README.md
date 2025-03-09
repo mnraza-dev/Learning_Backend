@@ -1,6 +1,21 @@
 # Learning Backend
 
 1. Intro to nodejs
+- Nodejs is a runtime environment for executing JavaScript code outside of a browser.
+```javascript
+import http from "http";
+
+const server = http.createServer((req, res) => {
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end("Welcome to Home Route \n");
+  }
+);
+const PORT = process.env.PORT || 3000;
+
+server.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
+```	
 2. Creating Our server in nodejs
 3. Intro to expressjs
 4. Connect Backend with Frontend
