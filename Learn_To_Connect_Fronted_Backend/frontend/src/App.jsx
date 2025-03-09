@@ -32,7 +32,6 @@ const App = () => {
 
   return (
     <div className="App">
-   
         <input
           placeholder="username"
           type="text"
@@ -55,8 +54,6 @@ const App = () => {
         />
         <br />
         <button onClick={handleSubmit} type="button">Send Request</button>
-  
-     
     </div>
   );
 };
