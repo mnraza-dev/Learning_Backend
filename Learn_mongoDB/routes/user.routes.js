@@ -3,14 +3,14 @@ import {
   createUser,
   deleteUser,
   fetchUser,
-  fetchUserByUser,
+  fetchUserById,
   updateUser,
 } from "../controllers/user.controllers.js";
 
 const userRouter = Router();
 
 userRouter.get("/", fetchUser);
-userRouter.get("/:userName", fetchUserByUser);
+userRouter.get("/:id", fetchUserById);
 userRouter.post("/create", createUser);
 userRouter.put("/update/:id", updateUser);
 userRouter.delete("/delete/:id", deleteUser);

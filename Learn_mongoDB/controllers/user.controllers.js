@@ -24,11 +24,9 @@ export const fetchUser = async (req, res) => {
     data: users,
   });
 };
-export const fetchUserByUser = async (req, res) => {
+export const fetchUserById = async (req, res) => {
   try {
-    const user = await User.findOne({
-      userName: req.params.userName,
-    });
+    const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: "User not found" });
     res.status(200).json({
       message: "Users fetched successfully",
@@ -48,11 +46,10 @@ export const updateUser = async (req, res) => {
     const { name, email } = req.body;
     const user = await User.findOneAndUpdate(
       { _id: req.params.id },
+      { name, email },
       {
-        name,
-        email,
-      },
-      { new: true }
+        new: true,
+      }
     );
     if (!user) return res.status(404).json({ message: "User not found" });
     res.status(200).json({ message: "User updated successfully", data: user });
@@ -66,7 +63,7 @@ export const deleteUser = async (req, res) => {
   try {
     const user = await User.findOneAndDelete(req.params.id);
     if (!user) return res.status(404).json({ message: "User not found" });
-    res.status(200).json({ message: "User deleted successfully", data: null });
+    res.status(200).json({ message: "User deleted successfully", data: user });
   } catch (error) {
     res
       .status(500)
