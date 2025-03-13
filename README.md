@@ -14,7 +14,9 @@
    - Followers count
    - Following count
    - Bio
-   - Profile pic
-   - Cover pic
+   - last 10 tweets from the user
 
-   
+- User should be able to follow/unfollow other users
+- Pagination on tweets
+- User authentication
+
