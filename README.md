@@ -6,3 +6,15 @@
 - Any post should be visible to all those who follows the user
 - Anyone who follows you can comment on your post
 - Anyone who follows you can like a post 
+- we can like a comment also
+- we can reply to a comment
+
+- User Profile
+   - Name 
+   - Followers count
+   - Following count
+   - Bio
+   - Profile pic
+   - Cover pic
+
+   
