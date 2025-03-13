@@ -8,6 +8,7 @@
 - Anyone who follows you can like a post 
 - we can like a comment also
 - we can reply to a comment
+- retweeting post
 
 - User Profile
    - Name 
@@ -20,3 +21,4 @@
 - Pagination on tweets
 - User authentication
 
+- Every tweet might be having a hashtag
