@@ -50,14 +50,9 @@ export const getAllUsers = async (req, res) => {
 
 export const getUserById = async (req, res) => {
   try {
-    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-      return res.status(400).json({ message: "Invalid user ID format" });
-    }
-
     const user = await User.findById(req.params.id);
-    
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({ message: "channel not found" });
     }
 
     res.status(200).json({ user });
@@ -67,3 +62,18 @@ export const getUserById = async (req, res) => {
   }
 };
 
+export const updateUser = async (req, res) => {
+  try {
+    const existingUser = await User.findById(req.params.id);
+    if (!existingUser) {
+      return res.status(404).json({ message: "channel not found" });
+    }
+
+    const newUser = await User.findByIdAndUpdate(existingUser, {
+      channelName: req.body.channelName,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error", error });
+  }
+};
