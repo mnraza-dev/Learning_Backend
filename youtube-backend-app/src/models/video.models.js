@@ -23,6 +23,11 @@ const videoSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    videoId: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     thumbnailUrl: {
       type: String,
       required: true,
@@ -45,22 +50,33 @@ const videoSchema = new mongoose.Schema(
     views: {
       type: Number,
       default: 0,
+      min: 0,
     },
     likes: {
       type: Number,
       default: 0,
+      min: 0,
     },
     dislikes: {
       type: Number,
-      default: 0,
-    },
-    comments: {
-      type: Number,
+      min: 0,
       default: 0,
     },
     isPublished: {
       type: Boolean,
       default: false,
+    },
+    likedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+    dislikedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+    viewedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
   },
   {
