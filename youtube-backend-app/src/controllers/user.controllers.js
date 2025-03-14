@@ -5,19 +5,17 @@ import bcrypt from "bcrypt";
 
 export const createUser = async (req, res) => {
   try {
-    // if (!req.files || !req.files.logoUrl) {
-    //   return res.status(400).json({ message: "Logo image is required" });
-    // }
+    const existingUser = await User.findOne({ email: req.body.email });
 
-    // const logoFile = req.files.logoUrl; // Use correct field name
-
-    // if (!logoFile.tempFilePath) {
-    //   return res.status(400).json({ message: "Invalid file structure" });
-    // }
-
+    if (existingUser) {
+      return res.status(400).json({ message: "Channel already exists" });
+    }
+    
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-    const uploadImage = await cloudinary.uploader.upload(req.files.logoUrl.tempFilePath);
+    const uploadImage = await cloudinary.uploader.upload(
+      req.files.logoUrl.tempFilePath
+    );
 
     const newUser = new User({
       _id: new mongoose.Types.ObjectId(),
@@ -39,4 +37,3 @@ export const createUser = async (req, res) => {
     res.status(500).json({ message: "Internal server error", error });
   }
 };
-
