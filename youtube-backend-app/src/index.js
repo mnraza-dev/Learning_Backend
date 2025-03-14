@@ -2,6 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.config.js";
 import userRouter from "./routes/user.routes.js";
+import bodyParser from "body-parser";
+import fileUpload from "express-fileupload";
 
 dotenv.config();
 
@@ -9,8 +11,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 connectDB();
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "/tmp/",
+  })
+);
 app.use("/api/v1/users", userRouter);
 
 app.listen(PORT, () => {
