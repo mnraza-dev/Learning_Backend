@@ -41,3 +41,27 @@ export const uploadVideo = async (req, res) => {
     res.status(500).json({ message: "Internal server error", error });
   }
 };
+
+export const updateVideo = async (req, res) => {
+  try {
+    // update video meta data
+    const { title, description, category, tags } = req.body;
+    const videoId = req.params.id;
+
+    const video = await Video.findById(videoId);
+    if (!video) {
+      return res.status(404).json({ message: "Video not found" });
+    }
+
+    video.title = title;
+    video.description = description;
+    video.category = category;
+    video.tags = tags ? tags.split(",") : [];
+
+    await video.save();
+
+    res.status(200).json({ message: "Video updated successfully", video });
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error", error });
+  }
+};
