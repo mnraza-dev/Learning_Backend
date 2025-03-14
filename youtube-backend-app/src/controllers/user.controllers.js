@@ -10,7 +10,7 @@ export const createUser = async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ message: "Channel already exists" });
     }
-    
+
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
     const uploadImage = await cloudinary.uploader.upload(
@@ -37,3 +37,33 @@ export const createUser = async (req, res) => {
     res.status(500).json({ message: "Internal server error", error });
   }
 };
+
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json({ users });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error", error });
+  }
+};
+
+export const getUserById = async (req, res) => {
+  try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({ message: "Invalid user ID format" });
+    }
+
+    const user = await User.findById(req.params.id);
+    
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({ user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error", error });
+  }
+};
+
