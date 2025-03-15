@@ -12,7 +12,7 @@ const SignUp = () => {
     username: "",
     email: "",
     password: "",
-    image: null,
+    profilePic: null,
   });
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -24,14 +24,12 @@ const SignUp = () => {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-
     try {
       const res = await axios.post(`${serverURL}/api/signup`, formData, {
         withCredentials: true,
       });
       console.log(res);
       if (res.status === 200) {
-        navigate("/login");
         alert("success");
       }
     } catch (error) {
@@ -40,10 +38,9 @@ const SignUp = () => {
   };
 
   const handleImageChange = (e) => {
-
     const file = e.target.files[0];
     if (file) {
-      setFormData({ ...formData, image: URL.createObjectURL(file) });
+      setFormData({ ...formData, profilePic: URL.createObjectURL(file) });
     }
   };
 
@@ -58,7 +55,7 @@ const SignUp = () => {
           <label htmlFor="image-upload" className="relative cursor-pointer">
             <img
               src={
-                formData.image ||
+                formData.profilePic ||
                 "https://cdn-icons-png.flaticon.com/512/149/149071.png"
               }
               alt="Profile"
