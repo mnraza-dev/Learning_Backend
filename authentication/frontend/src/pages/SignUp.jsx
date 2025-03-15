@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 
 const SignUp = () => {
+  const { serverURL } = useContext(dataContext);
   const [formData, setFormData] = useState({
     username: "",
     firstName: "",
@@ -14,6 +15,23 @@ const SignUp = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`${serverURL}/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleImageChange = (e) => {
@@ -30,15 +48,18 @@ const SignUp = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-black">
-      <form 
-        onSubmit={handleSubmit} 
+      <form
+        onSubmit={handleSignUp}
         className="bg-white p-6 rounded-lg shadow-md w-98 space-y-4"
       >
         <h2 className="text-2xl font-semibold text-center">Sign Up</h2>
         <div className="flex items-center justify-center relative">
           <label htmlFor="image-upload" className="relative cursor-pointer">
             <img
-              src={formData.image || "https://cdn-icons-png.flaticon.com/512/149/149071.png"} 
+              src={
+                formData.image ||
+                "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+              }
               alt="Profile"
               className="w-30 h-30 rounded-full object-cover border border-gray-300 hover:opacity-75 transition-all"
             />
