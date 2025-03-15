@@ -17,7 +17,7 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use("/api/v1/users", userRouter);
+app.use("/api", userRouter);
 
 app.listen(PORT, () => {
   connectDB();

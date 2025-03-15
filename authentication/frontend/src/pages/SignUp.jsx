@@ -1,17 +1,20 @@
 import { useContext, useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
+import axios from "axios";
+import { dataContext } from "../context/UserContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const { serverURL } = useContext(dataContext);
   const [formData, setFormData] = useState({
-    username: "",
     firstName: "",
     lastName: "",
+    username: "",
     email: "",
     password: "",
     image: null,
   });
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -19,16 +22,15 @@ const SignUp = () => {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await fetch(`${serverURL}/signup`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+      const res = await axios.post(`${serverURL}/api/signup`, formData, {
+        withCredentials: true,
       });
-      const data = await response.json();
-      console.log(data);
+      console.log(res);
+      if (res.status === 200) {
+        alert("success");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -131,6 +133,15 @@ const SignUp = () => {
         >
           Sign Up
         </button>
+        <p className="text-center">
+          Already have an account ?{" "}
+          <span
+            className="text-blue-500 cursor-pointer"
+            onClick={() => navigate("/login")}
+          >
+            Login
+          </span>{" "}
+        </p>
       </form>
     </div>
   );
