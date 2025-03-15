@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import axios from "axios";
 import { dataContext } from "../context/UserContext.jsx";
@@ -20,6 +20,8 @@ const SignUp = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const imageInputRef = useRef(null);
+
   const handleSignUp = async (e) => {
     e.preventDefault();
 
@@ -29,6 +31,7 @@ const SignUp = () => {
       });
       console.log(res);
       if (res.status === 200) {
+        navigate("/login");
         alert("success");
       }
     } catch (error) {
@@ -37,15 +40,11 @@ const SignUp = () => {
   };
 
   const handleImageChange = (e) => {
+
     const file = e.target.files[0];
     if (file) {
       setFormData({ ...formData, image: URL.createObjectURL(file) });
     }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
   };
 
   return (
@@ -69,13 +68,14 @@ const SignUp = () => {
               <FaPlus className="text-white bg-black/50 p-1 rounded-full w-8 h-8" />
             </div>
           </label>
-          {/* <input 
-            type="file" 
-            id="image-upload" 
-            accept="image/*" 
-            onChange={handleImageChange} 
+          <input
+            type="file"
+            id="image-upload"
+            ref={imageInputRef}
+            accept="image/*"
+            onChange={handleImageChange}
             className="hidden"
-          /> */}
+          />
         </div>
         <div className="flex space-x-4">
           <input
