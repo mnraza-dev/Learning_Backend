@@ -1,0 +1,21 @@
+{
+  "name": "learning_backend",
+  "version": "1.0.0",
+  "description": "- User should be able to create post\r    - The post/tweet can't be more than 250 chars\r    - Every post /tweet will be having support for image upload\r - Any post should be visible to all those who follows the user\r - Anyone who follows you can comment on your post\r - Anyone who follows you can like a post \r - we can like a comment also\r - we can reply to a comment\r - retweeting post",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mnraza-dev/Learning_Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mnraza-dev/Learning_Backend/issues"
+  },
+  "homepage": "https://github.com/mnraza-dev/Learning_Backend#readme"
+}
