@@ -14,3 +14,8 @@ console.log(os.cpus());
 console.log(os.totalmem());
 console.log(os.uptime());
 
+console.log(os.userInfo());
+console.log(os.freemem());
+
+
+
