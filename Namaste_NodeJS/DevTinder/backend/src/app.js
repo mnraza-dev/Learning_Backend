@@ -5,6 +5,7 @@ import User from "./models/user.model.js";
 
 dotenv.config();
 const app = express();
+app.use(express.json());
 const port = process.env.PORT || 3000;
 
 app.post("/api/users", async (req, res) => {
