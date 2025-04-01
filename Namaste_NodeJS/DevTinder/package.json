@@ -1,0 +1,12 @@
+{
+  "name": "devtinder",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "MNRaza",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  }
+}
