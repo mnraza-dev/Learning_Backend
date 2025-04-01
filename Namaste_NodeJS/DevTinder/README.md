@@ -2,8 +2,6 @@
 
 DevTinder is a simple social media platform for developers. It allows users to create profiles, connect with other developers, and share their skills and experience.
 
-
-
 ## Table of Contents
 
 - [Features](#features)
@@ -11,7 +9,6 @@ DevTinder is a simple social media platform for developers. It allows users to c
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
-
 
 ## Features
 
@@ -23,25 +20,51 @@ DevTinder is a simple social media platform for developers. It allows users to c
 - View other developer profiles
 
 ## DB Schema
+
 The database schema for DevTinder is as follows:
 
 - `Users` collection
-    - `id` (primary key)
-    - `firstname`
-    - `lastname`
-    - `email`
-    - `username`
-    - `age`	
-    - `gender`	
-    - `avatar`
-    - `password`
-    - `bio`
-    - `location`
-    - `skills`
-    - `githubusername`
-    - `experience`
-    - `social`
+  - `id` (primary key)
+  - `firstname`
+  - `lastname`
+  - `email`
+  - `username`
+  - `age`
+  - `gender`
+  - `avatar`
+  - `password`
+  - `bio`
+  - `location`
+  - `skills`
+  - `githubusername`
+  - `experience`
+  - `social`
 
+- `ConnectionRequest` collection
+  - `id` (primary key)
+  - `senderId`
+  - `receiverId`
+  - `status` enum ('pending','ignored', 'accepted', 'rejected')
+
+- `Message` collection
+  - `id` (primary key)
+  - `senderId`
+  - `receiverId`
+  - `text`
+  - `timestamp`
+
+- `Notification` collection
+  - `id` (primary key)
+  - `senderId`
+  - `receiverId`
+  - `text`
+  - `timestamp`
+  
+- `Like` collection
+  - `id` (primary key)
+  - `senderId`
+  - `receiverId`
+  - `timestamp`
 
 ## Installation
 
@@ -66,4 +89,3 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
