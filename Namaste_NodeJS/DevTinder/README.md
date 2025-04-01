@@ -16,9 +16,32 @@ DevTinder is a simple social media platform for developers. It allows users to c
 ## Features
 
 - Create a profile
+- update the profile details
+- Search for other developers
 - Connect with other developers
 - Share your skills and experience
 - View other developer profiles
+
+## DB Schema
+The database schema for DevTinder is as follows:
+
+- `Users` collection
+    - `id` (primary key)
+    - `firstname`
+    - `lastname`
+    - `email`
+    - `username`
+    - `age`	
+    - `gender`	
+    - `avatar`
+    - `password`
+    - `bio`
+    - `location`
+    - `skills`
+    - `githubusername`
+    - `experience`
+    - `social`
+
 
 ## Installation
 
