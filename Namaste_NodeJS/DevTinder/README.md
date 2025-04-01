@@ -38,7 +38,6 @@ The database schema for DevTinder is as follows:
   - `skills`
   - `githubusername`
   - `experience`
-  - `social`
 
 - `ConnectionRequest` collection
   - `id` (primary key)
