@@ -4,8 +4,10 @@ console.log('from index.js, Sum is : ',calculateSum(1,12));
 // console.log(global);
 console.log(this); // empty object
 console.log(globalThis === global);
-
 console.log(x);
+
+
+
 
 
 
