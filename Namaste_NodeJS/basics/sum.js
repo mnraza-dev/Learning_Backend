@@ -2,4 +2,9 @@ function calculateSum(a, b) {
   const sum = a + b;
   return sum;
 }
-module.exports = calculateSum;
+
+var x = "Hello devs!";
+module.exports = {
+  calculateSum,
+  x,
+};
