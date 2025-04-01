@@ -5,6 +5,7 @@ DevTinder is a simple social media platform for developers. It allows users to c
 ## Table of Contents
 
 - [Features](#features)
+- [DB Schema](#db-schema)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
@@ -20,7 +21,6 @@ DevTinder is a simple social media platform for developers. It allows users to c
 - View other developer profiles
 
 ## DB Schema
-
 The database schema for DevTinder is as follows:
 
 - `Users` collection
@@ -65,6 +65,20 @@ The database schema for DevTinder is as follows:
   - `senderId`
   - `receiverId`
   - `timestamp`
+
+## API Endpoints
+
+The API endpoints for DevTinder are as follows:
+- POST   `/api/signup` - Create a user
+- POST   `/api/login` - Login a user
+- GET    `/api/profile` - Get user profile
+- POST   `/api/profile` - Create a user profile
+- PATCH  `/api/profile` - Update user
+- DELETE `/api/profile` - Delete user profile 
+- POST   `/api/sendRequest` - Send a connection request
+- GET    `/api/requests` - Get connection requests
+- POST   `/api/reviewRequest` - Review a connection request
+- GET    `/api/connections` - Get all connections
 
 ## Installation
 
