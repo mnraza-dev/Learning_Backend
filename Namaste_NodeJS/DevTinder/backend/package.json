@@ -5,7 +5,7 @@
   "license": "ISC",
   "author": "MNRaza",
   "type": "module",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "dev": "nodemon app.js"
   },
@@ -15,7 +15,7 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.7",
-    "expres": "^0.0.5",
+    "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2"
   }
 }
