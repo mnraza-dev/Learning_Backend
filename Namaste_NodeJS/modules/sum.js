@@ -1,5 +1,4 @@
-function calculateSum(a, b) {
+export function calculateSum(a, b) {
     return a + b
 }
-
-export default calculateSum
+x = "Hello devs!"

@@ -1,6 +1,7 @@
-import calculateSum from "./sum.js";
+import {calculateSum} from "./sum.js";
 
 console.log("from index.js, Sum is : ", calculateSum(16, 12));
+console.log(x);
 
 // Note:
 /**
@@ -22,3 +23,5 @@ console.log("from index.js, Sum is : ", calculateSum(16, 12));
  * 5. It has strict mode
  * 6. It is by default used in React, Angular
  */
+
+
