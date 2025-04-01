@@ -1,7 +1,15 @@
 import {calculateSum} from "./sum.js";
+import {multiplication} from "./multiplication.js";
+import {division} from "./division.js";
 
 console.log("from index.js, Sum is : ", calculateSum(16, 12));
-console.log(x);
+// console.log(x);
+
+console.log("Multiply: ", multiplication(6, 7));
+
+
+console.log("Divide: ", division(16, 8));
+
 
 // Note:
 /**
