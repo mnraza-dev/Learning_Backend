@@ -5,8 +5,11 @@
   "license": "ISC",
   "author": "MNRaza",
   "type": "module",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "dev": "nodemon app.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
   }
 }
