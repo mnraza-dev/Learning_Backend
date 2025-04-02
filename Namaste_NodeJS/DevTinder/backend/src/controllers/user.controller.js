@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import User from "../models/user.model.js";
 import bcrypt from "bcrypt";
+import validator from "validator";
+import jwt from "jsonwebtoken";
 
 export const signup = async (req, res) => {
   try {
@@ -29,7 +31,35 @@ export const signup = async (req, res) => {
 };
 export const login = async (req, res) => {
   try {
-    console.log("req.body: ", req.body);
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    if (!email || !password) {
+      return res
+        .status(400)
+        .json({ message: "Email and password are required" });
+    }
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({ message: "Invalid email" });
+    }
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
+    if (!isPasswordMatch) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    // const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    //   expiresIn: "1h",
+    // });
+
+    return res.status(200).json({
+      message: "User logged in successfully",
+      user,
+      // token,
+    });
+
+
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -70,13 +100,12 @@ export const updateUser = async (req, res) => {
       { userName: userName },
       { ...req.body },
       { new: true }
-    )
+    );
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
     res.json(user);
   } catch (error) {
     return res.status(500).json({ message: error.message });
-    
   }
-}
+};
