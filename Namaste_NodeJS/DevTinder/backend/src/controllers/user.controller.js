@@ -1,4 +1,4 @@
-import User from "../models/user.model";
+import User from "../models/user.model.js";
 
 export const signup = async (req, res) => {
   try {
@@ -19,4 +19,8 @@ export const login = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
+};
+
+export const test = async (req, res) => {
+  res.json({ message: "Hello World" });
 };
