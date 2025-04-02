@@ -25,7 +25,7 @@ export const login = async (req, res) => {
   }
 };
 
-export const feed = async (req, res) => {
+export const getAllUsers = async (req, res) => {
   const users = await User.find();
   if (!users) {
     return res.status(404).json({ message: "Users not found" });

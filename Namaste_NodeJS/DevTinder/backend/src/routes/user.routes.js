@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {
-  feed,
+  getAllUsers,
   getUserByEmail,
   login,
   signup,
@@ -8,7 +8,7 @@ import {
 
 const userRoutes = Router();
 
-userRoutes.get("/feed", feed);
+userRoutes.get("/feed", getAllUsers);
 userRoutes.post("/signup", signup);
 userRoutes.post("/login", login);
 userRoutes.get("/:email", getUserByEmail);
