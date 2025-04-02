@@ -114,25 +114,21 @@ export const updateUser = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
-
 export const getProfile = async (req, res) => {
   try {
-    const cookies = req.cookies;
-    const token = cookies.token;
-    if (!token) {
-      return res.status(401).json({ message: "Unauthorized" });
-    }
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    if (!decoded) {
-      return res.status(401).json({ message: "Unauthorized" });
-    }
-    console.log("decoded: ", decoded);
-    console.log("cookies: ", cookies);
-    const user = await User.findById(decoded._id);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
+    const user = req.user;
     res.send("Logged in User details : " + user);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export const sendConnectionRequest = async (req, res) => {
+  try {
+    const user = req.user;
+    const fullname = user.firstName + " " + user.lastName;
+
+    res.json({ message: "Connection request sent by " + fullname });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
