@@ -1,25 +1,16 @@
 import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.config.js";
-import User from "./models/user.model.js";
-
+import { signup } from "./controllers/user.controller.js";
 dotenv.config();
 const app = express();
 app.use(express.json());
 const port = process.env.PORT || 3000;
 
-app.post("/api/users", async (req, res) => {
-  try {
-    const user = await User.create(req.body);
-    res.status(201).json({
-      message: "User created successfully",
-      user,
-    });
-  } catch (error) {
-    console.log("error: ", error);
-    return res.status(500).json({ message: error.message });
-  }
-});
+app.post("/api/users", signup);
+
+
+
 
 app.listen(port, () => {
   connectDB();
