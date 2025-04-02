@@ -48,17 +48,22 @@ export const login = async (req, res) => {
     if (!isPasswordMatch) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
-
-    // create a JWT token
-
-    // add token to cookie and send the res back to the client
-    res.cookie("token", "bcdejbkjh3uy732nkbbcweb");
-
+    const token = jwt.sign(
+      {
+        _id: user._id,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: process.env.JWT_EXPIRY,
+      }
+    );
+    console.log("token: ", token);
+    res.cookie("token", token);
 
     return res.status(200).json({
       message: "User logged in successfully",
       user,
-      // token,
+      token,
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -113,9 +118,21 @@ export const updateUser = async (req, res) => {
 export const getProfile = async (req, res) => {
   try {
     const cookies = req.cookies;
+    const token = cookies.token;
+    if (!token) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    if (!decoded) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+    console.log("decoded: ", decoded);
     console.log("cookies: ", cookies);
-    
-   
+    const user = await User.findById(decoded._id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.send("Logged in User details : " + user);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
