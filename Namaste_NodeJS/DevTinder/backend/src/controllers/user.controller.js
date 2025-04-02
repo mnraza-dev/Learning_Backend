@@ -28,3 +28,18 @@ export const login = async (req, res) => {
 export const test = async (req, res) => {
   res.json({ message: "Hello World" });
 };
+
+export const feed = async (req, res) => {
+  const users = await User.find();
+  if (!users) {
+    return res.status(404).json({ message: "Users not found" });
+  }
+  res.json(users);
+};
+export const getUserByEmail = async (req, res) => {
+  const user = await User.findOne({ email: req.params.email });
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+  res.json(user);
+};
