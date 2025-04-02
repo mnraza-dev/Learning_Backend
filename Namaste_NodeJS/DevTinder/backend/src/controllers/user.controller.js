@@ -58,7 +58,10 @@ export const login = async (req, res) => {
       }
     );
     console.log("token: ", token);
-    res.cookie("token", token);
+    res.cookie("token", token, {
+      expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000), // 1 day
+      httpOnly: true,
+    });
 
     return res.status(200).json({
       message: "User logged in successfully",
@@ -122,7 +125,6 @@ export const getProfile = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
-
 export const sendConnectionRequest = async (req, res) => {
   try {
     const user = req.user;
