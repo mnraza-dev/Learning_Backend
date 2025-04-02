@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import validator from "validator";
 const userSchema = new mongoose.Schema(
   {
     firstName: {
@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       validate(value) {
-        if (!validator.isValidPassword(value)) {
+        if (!validator.isStrongPassword(value)) {
           throw new Error("Enter a strong password");
         }
       },
