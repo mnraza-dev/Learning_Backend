@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import User from "../models/user.model.js";
 import bcrypt from "bcrypt";
 
@@ -13,8 +14,6 @@ export const signup = async (req, res) => {
       ...req.body,
       password: hashedPassword,
     });
-  
-
     if (!user) {
       return res.status(400).json({ message: "User not signed up" });
     }
@@ -49,3 +48,35 @@ export const getUserByEmail = async (req, res) => {
   }
   res.json(user);
 };
+export const deleteUser = async (req, res) => {
+  const userName = req.params.userName;
+  try {
+    const user = await User.findOneAndDelete({
+      userName: userName,
+    });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.json({ message: "User deleted successfully" });
+  } catch (error) {
+    console.log("error: ", error);
+    return res.status(500).json({ message: error.message });
+  }
+};
+export const updateUser = async (req, res) => {
+  try {
+    const userName = req.params.userName;
+    const user = await User.findOneAndUpdate(
+      { userName: userName },
+      { ...req.body },
+      { new: true }
+    )
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.json(user);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+    
+  }
+}
