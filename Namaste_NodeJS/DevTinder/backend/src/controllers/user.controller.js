@@ -49,6 +49,16 @@ export const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
+    // create a JWT token
+
+    // add token to cookie and send the res back to the client
+    res.cookie("token", token, {});
+
+
+   
+    
+
+
     // const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
     //   expiresIn: "1h",
     // });
@@ -101,6 +111,19 @@ export const updateUser = async (req, res) => {
       { ...req.body },
       { new: true }
     );
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.json(user);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export const getProfile = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
