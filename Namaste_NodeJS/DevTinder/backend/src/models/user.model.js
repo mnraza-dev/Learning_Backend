@@ -15,6 +15,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
+      validate(value) {
+        if (!validator.isEmail(value)) {
+          throw new Error("Invalid email address");
+        }
+      },
     },
     userName: {
       type: String,
@@ -24,6 +29,11 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
+      validate(value) {
+        if (!validator.isValidPassword(value)) {
+          throw new Error("Enter a strong password");
+        }
+      },
     },
     age: {
       type: Number,
@@ -34,6 +44,11 @@ const userSchema = new mongoose.Schema(
     },
     avatar: {
       type: String,
+      validate(value) {
+        if (!validator.isValidUrl(value)) {
+          throw new Error("Enter a valid URL");
+        }
+      },
     },
     bio: {
       type: String,
