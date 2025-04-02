@@ -3,6 +3,10 @@ import User from "../models/user.model.js";
 export const signup = async (req, res) => {
   try {
     const user = await User.create(req.body);
+    if (!user) {
+      return res.status(400).json({ message: "User not created" });
+    }
+
     res.status(201).json({
       message: "User created successfully",
       user,
