@@ -13,6 +13,8 @@ app.use(express.json());
 app.use(cookieParser());
 const port = process.env.PORT || 3000;
 
+
+
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 

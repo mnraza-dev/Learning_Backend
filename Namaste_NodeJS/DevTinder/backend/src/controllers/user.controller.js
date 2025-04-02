@@ -52,24 +52,14 @@ export const login = async (req, res) => {
     // create a JWT token
 
     // add token to cookie and send the res back to the client
-    res.cookie("token", token, {});
+    res.cookie("token", "bcdejbkjh3uy732nkbbcweb");
 
-
-   
-    
-
-
-    // const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-    //   expiresIn: "1h",
-    // });
 
     return res.status(200).json({
       message: "User logged in successfully",
       user,
       // token,
     });
-
-
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -122,12 +112,10 @@ export const updateUser = async (req, res) => {
 
 export const getProfile = async (req, res) => {
   try {
-    const userId = req.userId;
-    const user = await User.findById(userId);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-    res.json(user);
+    const cookies = req.cookies;
+    console.log("cookies: ", cookies);
+    
+   
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
