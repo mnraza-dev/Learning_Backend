@@ -1,11 +1,9 @@
 import { Router } from "express";
-
 import { userAuth } from "../middlewares/auth.middleware.js";
+import { getProfile } from "../controllers/profile.controller.js";
 
 const profileRouter = Router();
 
-profileRouter.get("/feed", userAuth, (req, res) => {
-  res.status(200).json({ message: "Feed" });
-});
+profileRouter.get("/profile", userAuth, getProfile);
 
 export default profileRouter;
