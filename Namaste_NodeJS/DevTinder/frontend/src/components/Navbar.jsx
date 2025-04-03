@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const user = useSelector((state) => state.user);
-  const { avatar } = user?.user;
 
   return (
     <>
@@ -16,7 +15,7 @@ const Navbar = () => {
           <div className="flex gap-2">
             <div className="hidden lg:flex items-center">
               <p className="font-semibold flex items-center mr-2">
-                Welcome, {user?.user?.firstName.toUpperCase()}
+                Welcome, {user?.data?.firstName}
               </p>
             </div>
             <div className="dropdown dropdown-end ">
@@ -26,7 +25,13 @@ const Navbar = () => {
                 className="btn btn-ghost btn-circle avatar"
               >
                 <div className="w-10 rounded-full">
-                  <img alt="User_avatar" src={avatar} />
+                  <img
+                    alt="User Avatar"
+                    src={
+                      user.avatar ||
+                      "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+                    }
+                  />
                 </div>
               </div>
               <ul
