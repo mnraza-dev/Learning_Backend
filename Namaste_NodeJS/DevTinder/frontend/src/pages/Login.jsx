@@ -28,6 +28,7 @@ const Login = () => {
       setEmail("");
       setPassword("");
       dispatch(addUser(res.data));
+      navigate("/");
     } catch (error) {
       setError("Invalid email or password");
     }
