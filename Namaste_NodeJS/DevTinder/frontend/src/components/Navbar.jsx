@@ -14,10 +14,12 @@ const Navbar = () => {
 
         {user && (
           <div className="flex gap-2">
-            <div className="dropdown dropdown-end flex mx-5">
+            <div className="hidden lg:flex items-center">
               <p className="font-semibold flex items-center mr-2">
                 Welcome, {user?.user?.firstName.toUpperCase()}
               </p>
+            </div>
+            <div className="dropdown dropdown-end ">
               <div
                 tabIndex={0}
                 role="button"
