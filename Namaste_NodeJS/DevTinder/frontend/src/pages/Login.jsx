@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState("sahil@gmail.com");
-  const [password, setPassword] = useState("sahil@123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
@@ -12,7 +13,11 @@ const Login = () => {
       const res = await axios.post("http://localhost:8080/login", {
         email,
         password,
+      }, {
+        withCredentials: true,
       });
+      setError(null);
+
     } catch (error) {
       setError("Invalid email or password");
     }
