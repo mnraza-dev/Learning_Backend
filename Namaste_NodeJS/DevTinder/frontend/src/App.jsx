@@ -1,20 +1,21 @@
 import React from "react";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Login from "./pages/Login";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Body from "./pages/Body";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
 
 const App = () => {
   return (
     <>
-      <Navbar />
       <BrowserRouter basename="/">
         <Routes>
-          <Route path="/" element={<Login/>} />
+          <Route path="/" element={<Body />}>
+            <Route path="/" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
+          </Route>
         </Routes>
       </BrowserRouter>
-
-      <Footer />
     </>
   );
 };
