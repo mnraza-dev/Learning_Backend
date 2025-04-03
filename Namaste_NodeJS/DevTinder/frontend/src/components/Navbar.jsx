@@ -14,14 +14,17 @@ const Navbar = () => {
 
         {user && (
           <div className="flex gap-2">
-            <div className="dropdown dropdown-end">
+            <div className="dropdown dropdown-end flex mx-5">
+              <p className="font-semibold flex items-center mr-2">
+                Welcome, {user?.user?.firstName.toUpperCase()}
+              </p>
               <div
                 tabIndex={0}
                 role="button"
                 className="btn btn-ghost btn-circle avatar"
               >
                 <div className="w-10 rounded-full">
-                  <img alt="Tailwind CSS Navbar component" src={avatar} />
+                  <img alt="User_avatar" src={avatar} />
                 </div>
               </div>
               <ul
