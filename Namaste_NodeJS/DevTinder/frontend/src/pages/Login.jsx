@@ -1,24 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
+  const [email, setEmail] = useState("sahil@gmail.com");
+  const [password, setPassword] = useState("sahil@123");
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("http://localhost:8080/login", {
+        email,
+        password,
+      });
+    } catch (error) {
+      setError("Invalid email or password");
+    }
+  };
   return (
     <div className="  flex flex-col items-center justify-center h-screen bg-base-100">
       <div className="bg-base-200 shadow-lg rounded-lg p-10 mt-2 w-96">
         <h1 className="text-3xl font-semibold text-center mt-2">Login</h1>
+        {error && <p className="text-red-500 text-center">{error}</p>}
         <fieldset className="fieldset">
           <legend className="fieldset-legend">Email</legend>
-          <input type="email" className="input" placeholder="Type Email here" />
+          <input
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+            className="input"
+            placeholder="Type Email here"
+          />
         </fieldset>
         <fieldset className="fieldset">
           <legend className="fieldset-legend">Password</legend>
           <input
+            onChange={(e) => setPassword(e.target.value)}
             type="password"
             className="input"
             required
             placeholder="Type Password here"
           />
         </fieldset>
-        <button className="btn btn-primary w-full mt-4 rounded-md">
+        <button
+          onClick={handleSubmit}
+          className="btn btn-primary w-full mt-4 rounded-md"
+        >
           Login
         </button>
         <div className="flex justify-center items-center mt-4">

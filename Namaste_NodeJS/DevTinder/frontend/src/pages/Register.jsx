@@ -38,9 +38,9 @@ const Register = () => {
           Login
         </button>
         <div className="flex justify-center items-center mt-4">
-          <p className="text-sm text-gray-400">Don't have an account?</p>
-          <a href="/register" className=" btn btn-link">
-            Register
+          <p className="text-sm text-gray-400">Already have an account?</p>
+          <a href="/" className=" btn btn-link">
+            Login
           </a>
         </div>
       </div>

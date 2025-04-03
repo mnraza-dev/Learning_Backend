@@ -9,17 +9,16 @@ import requestRouter from "./routes/request.routes.js";
 
 dotenv.config();
 const app = express();
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+
+
 app.use(express.json());
 app.use(cookieParser());
 const port = process.env.PORT || 3000;
 
-
-
 app.use("/", authRouter);
 app.use("/", profileRouter);
 app.use("/", requestRouter);
-
-
 
 app.listen(port, () => {
   connectDB();
