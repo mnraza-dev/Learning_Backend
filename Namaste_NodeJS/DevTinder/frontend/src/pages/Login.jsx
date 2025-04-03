@@ -7,6 +7,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -17,6 +19,10 @@ const Login = () => {
         withCredentials: true,
       });
       setError(null);
+      setEmail("");
+      setPassword("");
+      // navigate.push("/profile");
+
 
     } catch (error) {
       setError("Invalid email or password");
