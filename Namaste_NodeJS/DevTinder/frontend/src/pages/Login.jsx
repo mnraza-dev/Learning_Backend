@@ -1,29 +1,33 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { addUser } from "../redux/userSlice";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8080/login", {
-        email,
-        password,
-      }, {
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        "http://localhost:8080/login",
+        {
+          email,
+          password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
       setError(null);
       setEmail("");
       setPassword("");
-      // navigate.push("/profile");
-
-
+      dispatch(addUser(res.data));
     } catch (error) {
       setError("Invalid email or password");
     }

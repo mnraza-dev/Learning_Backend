@@ -60,8 +60,10 @@ const userSchema = new mongoose.Schema(
     avatar: {
       type: String,
       trim: true,
+      default:
+        "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp",
       validate(value) {
-        if (!validator.isValidUrl(value)) {
+        if (!validator.isURL(value)) {
           throw new Error("Enter a valid URL");
         }
       },
