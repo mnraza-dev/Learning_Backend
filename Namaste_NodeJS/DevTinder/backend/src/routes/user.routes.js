@@ -5,21 +5,16 @@ import {
   deleteUser,
   getAllUsers,
   getUserByEmail,
-  login,
-  signup,
   updateUser,
 } from "../controllers/user.controller.js";
 import { userAuth } from "../middlewares/auth.middleware.js";
 
-const userRoutes = Router();
+const userRouter = Router();
 
-userRoutes.get("/feed", getAllUsers);
-userRoutes.post("/signup", signup);
-userRoutes.post("/login", login);
-userRoutes.get("/profile", userAuth, getProfile);
-userRoutes.get("/:email", getUserByEmail);
-userRoutes.put("/:userName", updateUser);
-userRoutes.delete("/:userName", deleteUser);
-userRoutes.post("/sendConnectionRequest", userAuth, sendConnectionRequest);
+userRouter.get("/feed", getAllUsers);
+userRouter.get("/:email", getUserByEmail);
+userRouter.put("/:userName", updateUser);
+userRouter.delete("/:userName", deleteUser);
+userRouter.post("/sendConnectionRequest", userAuth, sendConnectionRequest);
 
-export default userRoutes;
+export default userRouter;

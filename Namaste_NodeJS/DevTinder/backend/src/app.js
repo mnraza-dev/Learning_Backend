@@ -5,7 +5,8 @@ import cors from "cors";
 import { connectDB } from "./config/db.config.js";
 import userRoutes from "./routes/user.routes.js";
 import authRoutes from "./routes/auth.routes.js";
-
+import profileRouter from "./routes/profile.routes.js";
+import { requestRouter } from "./routes/request.routes.js";
 
 dotenv.config();
 const app = express();
@@ -17,14 +18,8 @@ const port = process.env.PORT || 3000;
 
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
-
-
-
-
-
-
-
-
+app.use("/api/profile", profileRouter);
+app.use("/api/requests", requestRouter);
 
 
 
