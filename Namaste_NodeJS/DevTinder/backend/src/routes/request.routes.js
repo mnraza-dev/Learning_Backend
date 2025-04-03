@@ -1,8 +1,6 @@
 import { Router } from "express";
-
+import { getRequest } from "../controllers/request.controller.js";
 const requestRouter = Router();
 
-requestRouter.get("/request", (req, res) => {
-  res.status(200).json({ message: "Request sent" });
-});
+requestRouter.get("/request", getRequest);
 export default requestRouter;

@@ -19,7 +19,7 @@ const port = process.env.PORT || 3000;
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRouter);
-app.use("/api/requests", requestRouter);
+app.use("/api/request", requestRouter);
 
 
 
