@@ -68,11 +68,23 @@ export const login = async (req, res) => {
   }
   res.cookie("myToken", token, {
     httpOnly: true,
-    maxAge: 3600000 * 4, // 4 hours
+    maxAge: 3600000 * 4,
   });
 
   res.json({
     message: "User Logged In successfully!",
     data: user,
+  });
+};
+
+export const logout = async (req, res) => {
+  res.clearCookie("myToken");
+  res.json({
+    message: "User logged out!",
+  });
+};
+export const purchasedList = async (req, res) => {
+  res.json({
+    message: "Course purchased successfully!",
   });
 };
