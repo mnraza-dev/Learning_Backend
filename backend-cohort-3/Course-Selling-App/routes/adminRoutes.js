@@ -1,31 +1,18 @@
 import Router from "express";
+import {
+  signup,
+  login,
+  addCourse,
+  updateCourse,
+  getAllCourses,
+} from "../controllers/adminController.js";
 
 const adminRouter = Router();
 
-userRouter.post("/signup", (req, res) => {
-  res.json({
-    message: "Admin Signed Up successfully!",
-  });
-});
-userRouter.post("/login", (req, res) => {
-  res.json({
-    message: "Admin Logged In successfully!",
-  });
-});
-adminRouter.post("/course", (req, res) => {
-  res.json({
-    message: "Course added successfully!",
-  });
-});
-adminRouter.put("/course", (req, res) => {
-  res.json({
-    message: "Course updated successfully!",
-  });
-});
-adminRouter.get("/course/bulk", (req, res) => {
-  res.json({
-    message: "Course get in bulk!",
-  });
-});
+adminRouter.post("/signup", signup);
+adminRouter.post("/login", login);
+adminRouter.post("/course", addCourse);
+adminRouter.put("/course", updateCourse);
+adminRouter.get("/course/bulk", getAllCourses);
 
 export default adminRouter;

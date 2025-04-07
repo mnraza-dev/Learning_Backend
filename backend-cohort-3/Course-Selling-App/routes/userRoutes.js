@@ -1,17 +1,11 @@
 import Router from "express";
+import { login, signup } from "../controllers/userController.js";
+
 
 const userRouter = Router();
 
-userRouter.post("/signup", (req, res) => {
-  res.json({
-    message: "User Signed Up successfully!",
-  });
-});
-userRouter.post("/login", (req, res) => {
-  res.json({
-    message: "User Logged In successfully!",
-  });
-});
+userRouter.post("/signup", signup);
+userRouter.post("/login", login);
 userRouter.post("/purchases", (req, res) => {
   res.json({
     message: "Course purchased successfully!",

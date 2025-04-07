@@ -6,6 +6,7 @@ const purchaseSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Course',
       required: true,
+      
     },
     userId: {
       type: mongoose.Schema.Types.ObjectId,

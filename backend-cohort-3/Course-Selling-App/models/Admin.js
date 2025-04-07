@@ -4,15 +4,18 @@ const adminSchema = new mongoose.Schema(
     firstname: {
       type: String,
       required: true,
+      trim:true
     },
     lastname: {
       type: String,
       required: true,
+      trim:true
     },
     email: {
       type: String,
       required: true,
       unique: true,
+      trim:true,
       validate(value) {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!value.match(emailPattern)) {
@@ -23,6 +26,7 @@ const adminSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
+      trim:true
     },
   },
   {
