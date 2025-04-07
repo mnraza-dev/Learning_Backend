@@ -9,13 +9,12 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/users", userRouter);
-app.use("/course", courseRouter);
+app.use("/api/v1/users", userRouter);
+// app.use("/api/v1/admin", adminRouter);
+app.use("/api/v1/course", courseRouter);
 
 app.listen(PORT, () => {
   connectDB();

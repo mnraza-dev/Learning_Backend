@@ -12,7 +12,6 @@ userRouter.post("/login", (req, res) => {
     message: "User Logged In successfully!",
   });
 });
-
 userRouter.post("/purchases", (req, res) => {
   res.json({
     message: "Course purchased successfully!",
