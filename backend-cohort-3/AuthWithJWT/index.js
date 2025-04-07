@@ -22,10 +22,11 @@ function signJwt(username, password) {
 }
 
 function verifyJwt(token) {
-  const verified = jwt.verify(token, jwtSecret);
-  if (verified) {
+  try {
+    jwt.verify(token, jwtSecret);
+
     return true;
-  } else {
+  } catch (error) {
     return false;
   }
 }
@@ -42,7 +43,7 @@ const ans = signJwt("mnraza@gmail.com", "mnr0za");
 console.log("here is the token genrated: ", ans);
 
 const myToken = ans;
-console.log("Decoded is - ",decodeJwt(myToken));
+console.log("Decoded is - ", decodeJwt(myToken));
 
 const verifiedT = verifyJwt(ans);
 console.log("Is this verified - ", verifiedT);
