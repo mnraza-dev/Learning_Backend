@@ -1,10 +1,25 @@
 import jwt from "jsonwebtoken";
+import z from "zod";
 
-const value = {
-  name: "John Doe",
-  accountNumber: "123456789",
-  balance: 1000,
-};
+const jwtSecret = "secret";
 
-const token = jwt.sign(value, "secret");
-console.log(token);
+const emailSchema = z.string().email();
+const passwordSchema = z.string().min(6);
+
+function signJwt(username, password) {
+  const usernameResponse = emailSchema.safeParse(username);
+  const passwordResponse = passwordSchema.safeParse(password);
+  if (!usernameResponse.success || !passwordResponse.success) {
+    return null;
+  }
+  const signature = jwt.sign(
+    {
+      username,
+    },
+    jwtSecret
+  );
+  return signature;
+}
+
+const ans = signJwt("mnraza@gmail.com", "mnr0za");
+console.log(ans);
