@@ -1,15 +1,25 @@
-const user = {
-    name: "MN Raza",
-    age: 30,
-    profession: "SDE"
+interface AddressType{
+    streetName:string,
+    country: string
 }
-
-function greet(user: {
+interface UserType{
     name: string,
     age: number,
-    profession: string
-}) {
-    console.log("Hello, ", user.name);
+    profession: string,
+    address: AddressType
+}
+const user : UserType = {
+    name: "MN Raza",
+    age: 30,
+    profession: "SDE",
+    address:{
+        streetName:"Lucknow",
+        country: "India"
+    }
+}
+
+function greet(user:UserType) {
+    console.log("Hello, ", user);
 
 }
 greet(user)
