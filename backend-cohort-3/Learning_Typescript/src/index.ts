@@ -4,10 +4,10 @@ console.log(x);
 
 // Problem - 01 
 
-function greet(firstName: string) {
-    return "Hello " + firstName
-}
-console.log(greet("Abdul"));
+// function greet(firstName: string) {
+//     return "Hello " + firstName
+// }
+// console.log(greet("Abdul"));
 
 // Problem - 02
 function sum(a: number, b: number): number {
