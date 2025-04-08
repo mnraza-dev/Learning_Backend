@@ -19,10 +19,10 @@ console.log(sum(4, 6));
 function delayedCall(fn: () => void) {
     setTimeout(fn, 2000)
 }
-
 delayedCall(function () {
     setTimeout(() => {
         console.log("Hi after 2 seconds");
 
     }, 1000);
 })
+
