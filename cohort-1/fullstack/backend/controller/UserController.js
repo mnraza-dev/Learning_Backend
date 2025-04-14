@@ -74,6 +74,7 @@ export const verifyUser = async (req, res) => {
       .json({ error: error, success: false, message: "User Not verified" });
   }
 };
+
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -107,8 +108,21 @@ export const loginUser = async (req, res) => {
         })
       );
     }
-
-    res.cookie("token", token);
+    const cookieOptions = {
+      httpOnly: true,
+      secure: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    };
+    res.cookie("token", token, cookieOptions);
+    res.status(200).json({
+      success: true,
+      message: "Login successful",
+      user: {
+        id: user._id,
+        name: user.name,
+        role: user.role,
+      },
+    });
   } catch (error) {
     return res.status(500).json({
       message: "Login failed",
