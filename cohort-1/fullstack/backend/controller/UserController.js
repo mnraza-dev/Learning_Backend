@@ -3,6 +3,7 @@ import z from "zod";
 import crypto from "crypto";
 import nodemailer from "nodemailer";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 // z.name = z.string().min(3);
 // z.email = z.string().email();
@@ -87,7 +88,27 @@ export const loginUser = async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
-    
+    const token = jwt.sign(
+      {
+        id: user._id,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: process.env.JWT_EXPIRY,
+      }
+    );
+
+    if (!token) {
+      return (
+        res.status(400),
+        json({
+          message: "Token invalid",
+          success: false,
+        })
+      );
+    }
+
+    res.cookie("token", token);
   } catch (error) {
     return res.status(500).json({
       message: "Login failed",
