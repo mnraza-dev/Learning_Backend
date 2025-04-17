@@ -13,3 +13,28 @@ function getMax(nums: number[]): number {
 
 const result = getMax([1, 2, 3, 4, 5])
 console.log(result);
+
+
+interface MyUser {
+    name: string;
+    age: number;
+}
+
+const users: MyUser[] = [
+    {
+        name: "MN Raza",
+        age: 30
+    },
+    {
+        name: "Rahul",
+        age: 25
+    },
+    {
+        name: "Rohit",
+        age: 22
+    }
+]
+
+const legalAge = users.filter((item) => item.age > 18)
+
+console.log(legalAge);
