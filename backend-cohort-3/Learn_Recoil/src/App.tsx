@@ -6,6 +6,8 @@ const App = (): JSX.Element => {
   const networkCount = useRecoilValue<number>(networkAtom)
   const jobsCount = useRecoilValue<number>(jobsAtom)
   const notificationCount = useRecoilValue<number>(notificationAtom)
+  
+  const totalCount = 
   const [messageCount, setMessageCount] = useRecoilState<number>(messagingAtom)
 
   return (
