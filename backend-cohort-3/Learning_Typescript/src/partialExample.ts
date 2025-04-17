@@ -7,11 +7,8 @@ type New1User = {
     email: string,
     password: string
 }
-type NewUpdateProps = {
-    name?: string,
-    age?: number,
-    email?: string
-}
-function updateUser(updatedprops: NewUpdateProps) {
+type NewUpdateProps = Pick<NewUser, "name" | "age" | "email">
+type UpdatedPropsOptional = Partial<NewUpdateProps>
+function updateUser(updatedprops: UpdateProps) {
     // hit the db
 }
