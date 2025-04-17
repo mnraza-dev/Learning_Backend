@@ -1,7 +1,20 @@
 /**
  * Union Example
  */
-type SumInput = string | number
-function sum(a: SumInput, b: SumInput) {
-    console.log(a + b);
+type GoodUser = {
+    name: string,
+    gift: string
+
 }
+type BadUser = {
+    name: string,
+    ip: string
+}
+type User = GoodUser | BadUser
+const myUser: User = {
+    name: "MN Raza",
+    gift: "Laptop",
+    ip: "127.0.0.1"
+}
+
+console.log(myUser);
