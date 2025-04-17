@@ -20,8 +20,10 @@ export const messagingAtom = atom<number>({
 export const totalNotificationSelector = selector({
     key: "totalNotificationSelector",
     get: ({ get }) => {
+        const jobs = get(jobsAtom)
+        const networks = get(networkAtom)
         const notifications = get(notificationAtom)
         const messages = get(messagingAtom)
-        return notifications + messages
+        return notifications + messages + jobs + networks
     }
 })
