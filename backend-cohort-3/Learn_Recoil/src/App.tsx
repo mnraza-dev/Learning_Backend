@@ -1,5 +1,5 @@
 import { useRecoilState, useRecoilValue } from "recoil"
-import { jobsAtom, messagingAtom, networkAtom, notificationAtom } from "./atoms"
+import { jobsAtom, messagingAtom, networkAtom, notificationAtom, totalNotificationSelector } from "./atoms"
 import { JSX } from "react"
 
 const App = (): JSX.Element => {
@@ -7,12 +7,13 @@ const App = (): JSX.Element => {
   const jobsCount = useRecoilValue<number>(jobsAtom)
   const notificationCount = useRecoilValue<number>(notificationAtom)
   
-  const totalCount = 
+  const totalCount = useRecoilValue<number>(totalNotificationSelector)
+
   const [messageCount, setMessageCount] = useRecoilState<number>(messagingAtom)
 
   return (
     <div>
-      <h1>Learn Recoil</h1>
+      <h1>Learn Recoil - {totalCount}</h1>
       <button>My Network {networkCount > 99 ? "99+" : networkCount}</button>
       <button>Jobs {jobsCount}</button>
       <button>Messaging {messageCount}</button>
