@@ -13,7 +13,7 @@ const App = (): JSX.Element => {
 
   return (
     <div>
-      <h1>Learn Recoil - {totalCount}</h1>
+      <h1>Total Notifications - {totalCount}</h1>
       <button>My Network {networkCount > 99 ? "99+" : networkCount}</button>
       <button>Jobs {jobsCount}</button>
       <button>Messaging {messageCount}</button>
