@@ -8,6 +8,6 @@ type NewUser = {
     password: string
 }
 type UpdateProps = Pick<NewUser, "name" | "age" | "email">
-function updateUser(updatedprops: UpdateProps) {
+function updatedUser(updatedprops: UpdateProps) {
     // hit the db
 }
