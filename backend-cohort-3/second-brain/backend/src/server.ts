@@ -80,6 +80,18 @@ app.post("/api/v1/content", auth, (req, res) => {
     }
 });
 
+app.get("/api/v1/content", auth, async (req, res) => {
+    const contents = await Content.find({
+        userId: req.userId
+    }).populate("userId", "username");
+    if (!contents) throw new Error("Content not found");
+    res.status(200).json({
+        message: "Content fetched successfully",
+        success: true,
+        data: contents
+    })
+});
+
 app.post("/api/v1/brain/share", (req: Request, res: Response) => {
     console.log(req.body);
     res.send("Signup!");
