@@ -25,6 +25,8 @@ const Button = (props: ButtonProps) => {
             onClick={props.onClick} >
         {props.startIcon}
            {props.text}
+        {props.endIcon}
+
         </button>
     )
 }
