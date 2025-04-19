@@ -1,11 +1,11 @@
-import express from "express";
+import express, { Application, Request, Response } from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 dotenv.config();
 
-const app = express();
+const app: Application = express();
 app.use(cors(
     {
         origin: process.env.ORIGIN,
@@ -18,7 +18,7 @@ app.use(cookieParser());
 
 const port = process.env.PORT || 5000;
 
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response) => {
     res.send("Hello World!");
 });
 app.listen(port, () => {
