@@ -3,6 +3,7 @@ import User from "./models/User";
 import jwt from "jsonwebtoken";
 import Content from "./models/Content";
 import { auth } from "./middlewares/auth";
+import Tags from "./models/Tags";
 const app = express();
 
 app.use(express.json());
@@ -86,12 +87,13 @@ app.post("/api/v1/brain/share", (req: Request, res: Response) => {
 
 app.get("/api/v1/brain/:shareLink", (req: Request, res: Response) => {
     console.log(req.body);
-    res.send("Signup!");
+    res.send("shared link page!");
 });
-app.get("/api/v1/tags", auth, async (req: Request, res: Response) => {
+
+app.post("/api/v1/tags", auth, async (req: Request, res: Response) => {
     const { title } = req.body;
     try {
-        const tags = await Content.create({
+        const tags = await Tags.create({
             title
         });
 
@@ -103,7 +105,21 @@ app.get("/api/v1/tags", auth, async (req: Request, res: Response) => {
             data: { title }
         });
     } catch (error) {
-
+        res.status(500).json({
+            message: "Something went wrong",
+            success: false
+        })
     }
+});
+
+app.get("/api/v1/tags", auth, async (req: Request, res: Response) => {
+    const tags = await Tags.find({});
+    if (!tags) throw new Error("Tags not found");
+    res.status(200).json({
+        message: "Tags fetched successfully",
+        success: true,
+        data: { tags }
+    });
+
 });
 export default app;
