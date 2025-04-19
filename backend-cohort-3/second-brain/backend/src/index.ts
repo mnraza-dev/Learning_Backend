@@ -9,5 +9,4 @@ app.use(express.urlencoded({ extended: true }));
 app.listen(port, () => {
     connectDB();
     console.log(`Server is running at http://localhost:${port}`);
-
 })
