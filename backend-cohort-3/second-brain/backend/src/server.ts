@@ -27,7 +27,7 @@ app.post("/api/v1/signup", async (req, res) => {
 app.post("/api/v1/signin", async (req, res) => {
     const { email, password } = req.body;
     try {
-        const existingUser = await User.findOne({ email });
+        const existingUser = await User.findOne({ email , password});
         if (existingUser) {
             const token = jwt.sign(
                 { id: existingUser._id },
@@ -39,6 +39,11 @@ app.post("/api/v1/signin", async (req, res) => {
                 message: "Signin successful",
                 token,
                 success: true
+            });
+        } else {
+            res.status(404).json({
+                message: "Incorrect credentials",
+                success: false
             });
         }
 
