@@ -1,7 +1,6 @@
 import PlusIcon from '../icons/PlusIcon'
 import ShareIcon from '../icons/ShareIcon'
 import Button from './ui/Button'
-
 const Navbar = ({ setModalOpen }: { setModalOpen: React.Dispatch<React.SetStateAction<boolean>> }) => {
     return (
         <div className='fixed w-full z-20 flex p-4 justify-between items-center backdrop-blur-md bg-white/10 border-b border-white/20'>
@@ -25,5 +24,4 @@ const Navbar = ({ setModalOpen }: { setModalOpen: React.Dispatch<React.SetStateA
         </div>
     )
 }
-
 export default Navbar

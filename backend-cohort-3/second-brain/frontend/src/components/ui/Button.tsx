@@ -10,7 +10,6 @@ interface ButtonProps {
 const defaultStyles = "flex min-w-[160px] w-fit gap-2 items-center justify-center cursor-pointer rounded-lg"
 const variantStyles = {
     "primary": "bg-blue-500 hover:bg-blue-700 text-white font-semibold ",
-
     "secondary": "bg-[#dabbff] hover:bg-[#b792e3]  text-[#7e5da6] hover:text-[#3e265c] font-semibold",
 }
 const sizeStyles = {
