@@ -4,7 +4,7 @@ import Navbar from './components/Navbar'
 import Modal from './components/ui/Modal'
 import Sidebar from './components/Sidebar'
 const App: React.FC = () => {
-  const [modalOpen, setModalOpen] = useState(true)
+  const [modalOpen, setModalOpen] = useState(false)
   return (
     <>
       <Navbar setModalOpen={setModalOpen} />
