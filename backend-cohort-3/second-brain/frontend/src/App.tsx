@@ -10,7 +10,7 @@ const App: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(true)
   return (
     <>
-      <Navbar />
+      <Navbar setModalOpen={setModalOpen} />
       <Modal open={modalOpen} onClose={() => { setModalOpen(false) }} />
       <div className='flex p-8 items-center'>
         <div className="flex gap-4">

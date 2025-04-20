@@ -1,11 +1,13 @@
-import { useState } from "react"
+
 import Crossicon from "../../icons/Crossicon"
 import Input from "./Input"
 import Button from "./Button"
+interface ModalProps {
+  open: boolean
+  onClose: () => void
+}
 
-
-const Modal = ({ open, onClose }) => {
-  const [modelOpen, setModelOpen] = useState(false)
+const Modal = ({ open, onClose }: ModalProps) => {
   return (
     <>
       {

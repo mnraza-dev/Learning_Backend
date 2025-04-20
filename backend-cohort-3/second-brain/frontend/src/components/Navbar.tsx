@@ -2,7 +2,7 @@ import PlusIcon from '../icons/PlusIcon'
 import ShareIcon from '../icons/ShareIcon'
 import Button from './ui/Button'
 
-const Navbar = () => {
+const Navbar = ({ setModalOpen }: { setModalOpen: React.Dispatch<React.SetStateAction<boolean>> }) => {
     return (
         <div className='fixed w-full z-20 flex p-4 justify-between items-center backdrop-blur-md bg-white/10 border-b border-white/20'>
             <h1 className='text-2xl text-[#7e5da6] font-bold ml-4'>Second Brain</h1>
@@ -18,7 +18,7 @@ const Navbar = () => {
                     size='md'
                     variant="primary"
                     startIcon={<PlusIcon size='md' />}
-                    onClick={() => console.log("Add Content clicked")}
+                    onClick={() => setModalOpen(true)}
                     text={"Add Content"}
                 />
             </div>
@@ -27,4 +27,3 @@ const Navbar = () => {
 }
 
 export default Navbar
- 
