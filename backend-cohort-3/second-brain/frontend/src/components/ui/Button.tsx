@@ -8,7 +8,7 @@ interface ButtonProps {
     endIcon?: ReactElement
     onClick: () => void
 }
-const defaultStyles = "flex w-fit gap-2 items-center justify-center cursor-pointer rounded-lg"
+const defaultStyles = "flex min-w-[160px] w-full gap-2 items-center justify-center cursor-pointer rounded-lg"
 const variantStyles = {
     "primary": "bg-blue-500 hover:bg-blue-700 text-white font-semibold ",
 
@@ -26,7 +26,6 @@ const Button = (props: ButtonProps) => {
         {props.startIcon}
            {props.text}
         {props.endIcon}
-
         </button>
     )
 }
