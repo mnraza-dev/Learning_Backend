@@ -4,6 +4,8 @@ import jwt from "jsonwebtoken";
 import Content from "./models/Content";
 import { auth } from "./middlewares/auth";
 import Tags from "./models/Tags";
+import Link from "./models/Link";
+import { random } from "./utils/random";
 const app = express();
 
 app.use(express.json());
@@ -92,14 +94,73 @@ app.get("/api/v1/content", auth, async (req, res) => {
     })
 });
 
-app.post("/api/v1/brain/share", (req: Request, res: Response) => {
-    console.log(req.body);
-    res.send("Signup!");
+app.post("/api/v1/brain/share", auth, async (req: Request, res: Response) => {
+    const { share } = req.body;
+    if (share) {
+        try {
+            const existingLink = await Link.findOne({ userId: req.userId });
+            if (existingLink) {
+                res.json({
+                    hash: existingLink.hash
+                })
+                return;
+            }
+            const hash = random(10);
+            await Link.create({
+                hash: hash,
+                userId: req.userId
+            })
+            res.json({
+                data: "/share/" + hash
+            })
+        } catch (error) {
+            res.status(500).json({
+                message: "Something went wrong",
+                success: false
+            })
+        }
+    }
+    else {
+        Link.deleteOne({ userId: req.userId });
+        res.json({
+            message: "Link Removed successfully",
+            success: true
+        })
+    }
+
 });
 
-app.get("/api/v1/brain/:shareLink", (req: Request, res: Response) => {
-    console.log(req.body);
-    res.send("shared link page!");
+app.get("/api/v1/brain/:shareLink", async (req: Request, res: Response) => {
+    const hash = req.params.shareLink;
+    const link = await Link.findOne({ hash });
+    if (!link) {
+        res.status(404).json({
+            message: "Link not found",
+            success: false
+        })
+        return;
+    }
+    const content = await Content.findOne({ userId: link.userId });
+    if (!content) {
+        res.status(404).json({
+            message: "Content not found",
+            success: false
+        })
+        return;
+    }
+    const user = await User.findById(link.userId);
+    if (!user) {
+        res.status(404).json({
+            message: "User not found",
+            success: false
+        })
+        return;
+    }
+    res.status(200).json({
+        message: "Link fetched successfully",
+        success: true,
+        data: { username: user?.username, content }
+    })
 });
 
 app.post("/api/v1/tags", auth, async (req: Request, res: Response) => {

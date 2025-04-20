@@ -5,7 +5,7 @@ import ShareIcon from './icons/ShareIcon'
 
 const App: React.FC = () => {
   return (
-    <div className='flex flex-col gap-4 justify-center items-center'>
+    <div className='flex  gap-4 justify-center items-center'>
 
       <Button size='sm' variant="primary" startIcon={<PlusIcon size='sm' />} onClick={() => {
         console.log("Button 1 clicked")
