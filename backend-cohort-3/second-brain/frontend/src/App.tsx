@@ -3,22 +3,21 @@ import Button from './components/ui/Button'
 import PlusIcon from './icons/PlusIcon'
 import ShareIcon from './icons/ShareIcon'
 import Card from './components/ui/Card'
+import Navbar from './components/Navbar'
 
 const App: React.FC = () => {
   return (
-    <div className='flex p-8 flex-col   gap-4 justify-center items-center'>
-     <div className="flex gap-2">
-     <Button size='md' variant="secondary" startIcon={<ShareIcon size='md' />} onClick={() => {
-        console.log("Button 1 clicked")
-      }} text={"Share Brain"} />
-      <Button size='md' variant="primary" startIcon={<PlusIcon size='md' />} onClick={() => {
-        console.log("Button 1 clicked")
-      }} text={"Add Content"} />
-     </div>
+    <>
+      <Navbar />
+      <div className='flex p-8 items-center'>
+        <div className="flex gap-4">
+          {/* <Card type={"twitter"} link="https://twitter.com/ahuja_priyank/status/1802681770241929267?ref_src=twsrc%5Etfw" title="First Tweet" /> */}
+          <Card type={"twitter"} link="https://twitter.com/mnraza1907/status/1798661139943084393?ref_src=twsrc%5Etfw" title='My First Tweet' />
+          <Card type={"youtube"} link="https://www.youtube.com/embed/Eg1DeXnS0MU?si=usaaTziQI414w0uq" title='First Video' />
 
-      <Card />
-
-    </div>
+        </div>
+      </div>
+    </>
   )
 }
 
