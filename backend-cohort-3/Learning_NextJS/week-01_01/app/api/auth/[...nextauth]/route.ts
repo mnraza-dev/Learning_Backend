@@ -30,7 +30,6 @@ const handler = NextAuth({
                 }
             }
         }),
-
         GoogleProvider({
             clientId: "ade",
             clientSecret: "ade"
@@ -41,5 +40,4 @@ const handler = NextAuth({
         })
     ]
 })
-
 export { handler as GET, handler as POST }
