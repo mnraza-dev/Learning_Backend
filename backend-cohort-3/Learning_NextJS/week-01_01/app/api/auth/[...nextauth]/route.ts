@@ -5,12 +5,22 @@ const handler = NextAuth({
         CredentialsProvider({
             name: "email",
             credentials: {
-                username: { label: "Username", type: "text", placeholder: "jsmith" },
-                password: { label: "Password", type: "password" , placeholder: "******"}
+
+                username: { label: "Username", type: "text", placeholder: "Enter Username" },
+                password: { label: "Password", type: "password", placeholder: "Enter  Password " }
+            
             },
             async authorize(credentials, req) {
-                const user = { id: "1", name: "J Smith", email: "jsmith@example.com" }
-    
+                const username = credentials?.username
+                const password = credentials?.password
+
+                const user = {
+                    id: "1",
+                    name: "mnraza",
+                    email: "mnraza67@gmail.com"
+                }
+
+
                 if (user) {
                     return user
                 } else {
