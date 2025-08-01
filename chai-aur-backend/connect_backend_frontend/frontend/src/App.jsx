@@ -1,7 +1,6 @@
 import React from "react";
 import JokesItemCard from "./components/JokesItemCard";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const App = () => {
   const [jokes, setJokes] = useState([]);
@@ -35,14 +34,14 @@ const App = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
             😄 Jokes Hub
           </h1>
-          <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
             Discover the best jokes that will make you laugh out loud!
           </p>
         </div>
@@ -51,8 +50,10 @@ const App = () => {
         {loading && (
           <div className="flex justify-center items-center py-20">
             <div className="flex flex-col items-center space-y-4">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-              <p className="text-gray-600 dark:text-gray-300">Loading jokes...</p>
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-400"></div>
+              <p className="text-gray-300">
+                Loading jokes...
+              </p>
             </div>
           </div>
         )}
@@ -62,15 +63,15 @@ const App = () => {
           <div className="flex justify-center items-center py-20">
             <div className="text-center space-y-4">
               <div className="text-6xl">😞</div>
-              <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
+              <h2 className="text-2xl font-semibold text-gray-200">
                 Oops! Something went wrong
               </h2>
-              <p className="text-gray-600 dark:text-gray-300 max-w-md">
+              <p className="text-gray-300 max-w-md">
                 {error}
               </p>
               <button 
                 onClick={() => window.location.reload()}
-                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
               >
                 Try Again
               </button>
@@ -82,7 +83,7 @@ const App = () => {
         {!loading && !error && (
           <>
             <div className="mb-8 text-center">
-              <span className="inline-block px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium">
+              <span className="inline-block px-4 py-2 bg-blue-900 text-blue-200 rounded-full text-sm font-medium">
                 {jokes.length} {jokes.length === 1 ? 'joke' : 'jokes'} found
               </span>
             </div>
@@ -96,10 +97,10 @@ const App = () => {
             {jokes.length === 0 && (
               <div className="text-center py-20">
                 <div className="text-6xl mb-4">🤔</div>
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                <h3 className="text-xl font-semibold text-gray-200 mb-2">
                   No jokes found
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300">
+                <p className="text-gray-300">
                   Check back later for some hilarious content!
                 </p>
               </div>
